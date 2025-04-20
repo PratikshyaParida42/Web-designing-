@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmation Page</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #121212;
+            margin: 0;
+            flex-direction: column;
+            color: white;
+        }
+
+        .confirmation-container {
+            text-align: center;
+            padding: 30px;
+            background-color: #181818;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+
+        h2 {
+            color: #f4f4f4;
+        }
+
+        .animation-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .checkmark {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #4CAF50;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 30px;
+            opacity: 0;
+            transform: scale(0);
+            animation: checkmark-animation 1s ease-out forwards;
+        }
+
+        @keyframes checkmark-animation {
+            0% {
+                opacity: 0;
+                transform: scale(0);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .thank-you-message {
+            font-size: 18px;
+            color: #f4f4f4;
+            margin-top: 20px;
+        }
+
+        .logo {
+            margin-top: 20px;
+            max-width: 200px;
+        }
+
+        /* Footer Styles */
+        footer {
+            margin-top: 30px;
+            text-align: center;
+            color: #f4f4f4;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="confirmation-container">
+        <div class="animation-container">
+            <div class="checkmark">&#10003;</div>
+        </div>
+        <h2>Thanks for confirming your booking!</h2>
+        <p class="thank-you-message">Your payment has been successfully processed.</p>
+        <img src="https://logowik.com/content/uploads/images/mahindra-suv1293.jpg" alt="Mahindra Logo" class="logo" />
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Mahindra. All rights reserved.</p>
+    </footer>
+
+    <script>
+      
+      // Inside goToConfirmationPage function
+paymentData.amount = 30000;
+
+        window.onload = function() {
+            // Simulate loading payment data from the previous page (if needed)
+            const paymentData = JSON.parse(localStorage.getItem('paymentData'));
+            if(paymentData) {
+                console.log('Payment Data:', paymentData); // Just for debugging
+            }
+        }
+    </script>
+</body>
+</html>

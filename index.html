@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Car Booking</title>
+  <style>
+    /* General Styles */
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #121212;
+      color: white;
+    }
+
+    /* Header Styles */
+    #offer {
+      font-size: 18px;
+      color: #f4f4f4;
+    }
+
+    #offer span {
+      font-weight: bold;
+      color: #00ff48;
+    }
+
+    header img {
+      margin-top: 10px;
+    }
+
+    main {
+      padding: 20px;
+      background-color: #181818;
+      border-radius: 10px;
+      margin: 50px auto;
+      max-width: 600px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-size: 18px;
+      color: #f4f4f4;
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 12px;
+      border-radius: 5px;
+      border: 1px solid #444444;
+      background-color: #333333;
+      color: white;
+      font-size: 16px;
+      margin-top: 8px;
+    }
+
+    button {
+      background-color: #ffb200;
+;
+      color: #121212;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #ffb300;
+    }
+
+    button:focus {
+      outline: none;
+    }
+
+    #carImageContainer {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    #carImage {
+      height: 380px;
+      border-radius: 5px;
+    }
+
+    select {
+      background-color: #2a2a2a;
+      border: 1px solid #444444;
+    }
+
+    select option {
+      background-color: #2a2a2a;
+    }
+
+    footer {
+      background-color: red;
+      color: white;
+      padding: 30px;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    footer .footer-logo {
+      max-width: 150px;
+      margin-bottom: 20px;
+    }
+
+    footer .footer-links {
+      margin-bottom: 20px;
+    }
+
+    footer .footer-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+      margin: 0 15px;
+      text-transform: uppercase;
+    }
+
+    footer .footer-links a:hover {
+      color: #ffcc00;
+    }
+
+    footer .footer-rights {
+      font-size: 14px;
+    }
+
+    @media (max-width: 300px) {
+      header h1 {
+        font-size: 28px;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+      }
+
+      input, select, button {
+        font-size: 14px;
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header style="display: flex; justify-content: space-between; align-items: center; padding: 20px; background-color: #121212; color: white; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-bottom: 2px solid white;">
+  <img id="logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdKAiz1-dwxYmRzwAoFUCh7zGGBSjuY1BcXA&s" alt="Logo" style="max-width: 150px;">
+    <div class="nav-links" style="display: flex; gap: 20px;">
+      <a href="#contact" class="nav-link" style="text-decoration: none; color: white; font-size: 18px; font-weight: bold; text-transform: uppercase; transition: color 0.3s ease, cursor 0.3s ease;" 
+         onmouseover="this.style.color='red'; this.style.cursor='pointer';" 
+         onmouseout="this.style.color='white';">
+         Contact Us
+      </a>
+      <a href="#search" class="nav-link" style="text-decoration: none; color: white; font-size: 18px; font-weight: bold; text-transform: uppercase; transition: color 0.3s ease, cursor 0.3s ease;" 
+         onmouseover="this.style.color='red'; this.style.cursor='pointer';" 
+         onmouseout="this.style.color='white';">
+         Search
+      </a>
+      <a href="#profile" class="nav-link" style="text-decoration: none; color: white; font-size: 18px; font-weight: bold; text-transform: uppercase; transition: color 0.3s ease, cursor 0.3s ease;" 
+         onmouseover="this.style.color='red'; this.style.cursor='pointer';" 
+         onmouseout="this.style.color='white';">
+         Profile
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <form id="bookingForm">
+      <div class="form-group">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" required>
+      </div>
+
+      <div class="form-group">
+        <label for="contact">Contact Number:</label>
+        <input type="tel" id="contact" pattern="[0-9]{10}" required placeholder="Enter 10-digit number">
+      </div>
+
+      <div class="form-group">
+        <label for="car">Select Car:</label>
+        <select id="car" required>
+          <option value="">Choose a car</option>
+          <option value="thar">Thar</option>
+          <option value="xuv700">XUV 700</option>
+          <option value="tharroxx">Thar ROXX</option>
+        </select>
+      </div>
+
+      <div id="carImageContainer">
+        <img id="carImage" src="" alt="Selected Car" style="display: none;">
+      </div>
+<br>
+      <div class="form-group">
+        <label for="fuel">Fuel Type:</label>
+        <select id="fuel" required>
+          <option value="">Choose Fuel Type</option>
+          <option value="petrol">Petrol</option>
+          <option value="diesel">Diesel</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="variant">Select Variant:</label>
+        <select id="variant" required>
+          <option value="">Choose a Variant</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="transmission">Select Transmission:</label>
+        <select id="transmission" required>
+          <option value="">Choose Transmission</option>
+          <option value="manual">Manual</option>
+          <option value="automatic">Automatic</option>
+        </select>
+      </div>
+
+      <button type="submit">Book Now</button>
+    </form>
+  </main>
+
+  <footer>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdKAiz1-dwxYmRzwAoFUCh7zGGBSjuY1BcXA&s" alt="Logo" class="footer-logo">
+    <div class="footer-links">
+      <a href="#contact">Contact Us</a>
+      <a href="mailto:example@example.com">Email</a>
+      <a href="#address">Address</a>
+      <a href="#terms">Terms & Conditions</a>
+    </div>
+    <div class="footer-rights">
+      <p>&copy; 2025 Mahindra. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    const cars = {
+      tharroxx: {
+        variants: ['ROXX 4X2', 'ROXX 4X4'],
+        image: 'https://motoringworld.in/wp-content/uploads/2024/08/Screenshot-2024-08-13-at-5.43.04-PM.png'
+      },
+      xuv700: {
+        variants: ['AX5', 'AX7', 'AX7 LUXURY'],
+        image: 'https://stimg.cardekho.com/images/carexteriorimages/930x620/Mahindra/XUV700/10789/1705388477954/front-left-side-47.jpg?impolicy=resize&imwidth=420' 
+      },
+      thar: {
+        variants: ['AX 4X2', 'LX 4X4'],
+        image: 'https://stimg.cardekho.com/images/carexteriorimages/630x420/Mahindra/Thar/10746/1744358681783/front-left-side-47.jpg'
+      }
+    };
+
+    const carSelect = document.getElementById('car');
+    const variantSelect = document.getElementById('variant');
+    const carImage = document.getElementById('carImage');
+    const bookingForm = document.getElementById('bookingForm');
+
+    carSelect.addEventListener('change', function() {
+      const selectedCar = carSelect.value;
+      variantSelect.innerHTML = '<option value="">Choose a Variant</option>';
+
+      if (selectedCar) {
+        const carData = cars[selectedCar];
+        carData.variants.forEach(function(variant) {
+          const option = document.createElement('option');
+          option.value = variant;
+          option.textContent = variant;
+          variantSelect.appendChild(option);
+        });
+
+        carImage.src = carData.image;
+        carImage.style.display = 'block';
+      } else {
+        carImage.style.display = 'none';
+      }
+    });
+
+    bookingForm.addEventListener('submit', function(event) {
+      event.preventDefault();
+      alert('Your booking has been successful! You will be directed to the Booking Portal.');
+      window.location.href = 'payment.html';
+      bookingForm.reset();
+      variantSelect.innerHTML = '<option value="">Choose a Variant</option>';
+      carImage.style.display = 'none';
+    });
+  </script>
+</body>
+</html> insert a white line under header 

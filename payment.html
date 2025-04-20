@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Payment Page</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #121212;
+      color: white;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      text-align: center;
+      padding: 20px;
+      background-color: #222222;
+      color: white;
+      border-bottom: 2px solid #444444;
+    }
+
+    header h1 {
+      font-size: 36px;
+      margin: 10px 0;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 600px;
+      margin: 50px auto;
+      background-color: #181818;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #f4f4f4;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-weight: 600;
+      color: #f4f4f4;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="month"],
+    input[type="password"],
+    select {
+      width: 100%;
+      padding: 12px;
+      border-radius: 5px;
+      border: 1px solid #444444;
+      background-color: #333333;
+      color: white;
+      font-size: 16px;
+      margin-top: 5px;
+    }
+
+    button {
+      width: 100%;
+      padding: 15px;
+      background-color: #ffb300;
+      border: none;
+      border-radius: 5px;
+      color: #121212;
+      font-size: 16px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background-color: #e5a200;
+    }
+
+    button:focus {
+      outline: none;
+    }
+
+    footer {
+      background-color: red;
+      color: white;
+      padding: 30px;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    footer .footer-logo {
+      max-width: 150px;
+      margin-bottom: 20px;
+    }
+
+    footer .footer-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+      margin: 0 15px;
+      text-transform: uppercase;
+    }
+
+    footer .footer-links a:hover {
+      color: #ffcc00;
+    }
+
+    @media (max-width: 300px) {
+      header h1 {
+        font-size: 28px;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+      }
+
+      input,
+      select,
+      button {
+        font-size: 14px;
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header style="display: flex; justify-content: space-between; align-items: center;">
+    <img id="logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdKAiz1-dwxYmRzwAoFUCh7zGGBSjuY1BcXA&s" alt="Logo" style="max-width: 150px;" />
+    <div class="nav-links" style="display: flex; gap: 20px;">
+      <a href="#contact" style="color: white; text-decoration: none; font-weight: bold;" onmouseover="this.style.color='red'" onmouseout="this.style.color='white'">Contact Us</a>
+      <a href="#search" style="color: white; text-decoration: none; font-weight: bold;" onmouseover="this.style.color='red'" onmouseout="this.style.color='white'">Search</a>
+      <a href="#profile" style="color: white; text-decoration: none; font-weight: bold;" onmouseover="this.style.color='red'" onmouseout="this.style.color='white'">Profile</a>
+    </div>
+  </header>
+
+  <div class="container">
+    <div style="text-align: center; margin-bottom: 30px;">
+      <h3 style="color: #00ff48; font-size: 22px;">Booking Amount</h3>
+      <p style="font-size: 28px; font-weight: bold; color: #ffb300;">₹30,000</p>
+    </div>
+
+    <h2>Payment Information</h2>
+    <form id="payment-form" onsubmit="goToConfirmationPage(event)">
+      <!-- Card Type -->
+      <div class="form-group">
+        <label for="card-type">Card Type</label>
+        <select id="card-type" name="card-type" onchange="updateCardImage()" required>
+          <option value="">Choose a Card</option>
+          <option value="Visa">Visa</option>
+          <option value="MasterCard">MasterCard</option>
+          <option value="Amex">American Express</option>
+        </select>
+        <div id="card-image-box" style="margin-top: 15px; display: none; justify-content: center; text-align: center;">
+          <div style="border: 2px solid #444; border-radius: 10px; padding: 10px; width: 120px; height: 80px; display: flex; align-items: center; justify-content: center; background-color: #222;">
+            <img id="card-image" src="" alt="Card Logo" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Bank Name -->
+      <div class="form-group">
+        <label for="bank-name">Bank Name</label>
+        <select id="bank-name" name="bank-name" onchange="updateBankLogo()" required>
+          <option value="">Choose a Bank</option>
+          <option value="HDFC">HDFC Bank</option>
+          <option value="SBI">State Bank of India</option>
+          <option value="PNB">Punjab National Bank</option>
+        </select>
+        <div id="bank-logo-box" style="margin-top: 15px; display: none; justify-content: center; text-align: center;">
+          <div style="border: 2px solid #444; border-radius: 10px; padding: 10px; width: 150px; height: 80px; display: flex; align-items: center; justify-content: center; background-color: #222;">
+            <img id="bank-logo" src="" alt="Bank Logo" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Card Details -->
+      <div class="form-group">
+        <label for="cardholder-name">Cardholder Name</label>
+        <input type="text" id="cardholder-name" name="cardholder-name" placeholder="Enter Your Name" required />
+      </div>
+
+      <div class="form-group">
+        <label for="card-number">Card Number</label>
+        <input type="text" id="card-number" name="card-number" placeholder="Enter Card Number" maxlength="19" oninput="formatCardNumber(event)" required />
+      </div>
+
+      <div class="form-group">
+        <label for="expiry-date">Expiry Date</label>
+        <input type="month" id="expiry-date" name="expiry-date" required />
+      </div>
+
+      <div class="form-group">
+        <label for="cvv">CVV</label>
+        <input type="password" id="cvv" name="cvv" placeholder="Enter CVV" maxlength="3" oninput="restrictCVV(event)" required />
+      </div>
+
+      <button type="submit">Confirm Payment</button>
+    </form>
+  </div>
+
+  <footer>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdKAiz1-dwxYmRzwAoFUCh7zGGBSjuY1BcXA&s" alt="Logo" class="footer-logo" />
+    <div class="footer-links">
+      <a href="#contact">Contact Us</a>
+      <a href="mailto:example@example.com">Email</a>
+      <a href="#address">Address</a>
+      <a href="#terms">Terms & Conditions</a>
+    </div>
+    <div class="footer-rights">
+      <p>&copy; 2025 Mahindra. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    function formatCardNumber(event) {
+      let cardNumber = event.target.value.replace(/\D/g, '');
+      if (cardNumber.length <= 16) {
+        cardNumber = cardNumber.replace(/(\d{4})(?=\d)/g, '$1 ');
+      }
+      event.target.value = cardNumber;
+    }
+
+    function restrictCVV(event) {
+      let cvv = event.target.value.replace(/\D/g, '');
+      if (cvv.length > 3) {
+        cvv = cvv.slice(0, 3);
+      }
+      event.target.value = cvv;
+    }
+
+    function updateCardImage() {
+      const cardType = document.getElementById('card-type').value;
+      const cardImage = document.getElementById('card-image');
+      const cardImageBox = document.getElementById('card-image-box');
+
+      const cardImages = {
+        Visa: "https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png",
+        MasterCard: "https://upload.wikimedia.org/wikipedia/commons/0/04/Mastercard-logo.png",
+        Amex: "https://1000logos.net/wp-content/uploads/2016/10/American-Express-Color.png"
+      };
+
+      if (cardType) {
+        cardImageBox.style.display = 'flex';
+        cardImage.src = cardImages[cardType] || "";
+      } else {
+        cardImageBox.style.display = 'none';
+        cardImage.src = "";
+      }
+    }
+
+    function updateBankLogo() {
+      const bankName = document.getElementById('bank-name').value;
+      const bankLogo = document.getElementById('bank-logo');
+      const bankLogoBox = document.getElementById('bank-logo-box');
+
+      const bankLogos = {
+        HDFC: "https://media.assettype.com/TNIE%2Fimport%2F2021%2F8%2F2%2Foriginal%2FHDFC.jpg?w=480&auto=format%2Ccompress&fit=max",
+        SBI: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAt1BMVEX///8pIHUAte8AAGkJAGvk4+vS0d7V1OEAse7w7/QjGHMAsO5WUYwAAGcAs++w4PjB5/omHHQwK3odEHD5+fsgFHGop8FraJno9fwaDG/e3ugWBW7T7frHx9e/vtHy+f2CgKh0cp9OSoje8ftgxfK5uM07Nn6P1PWzsskAAF6k2vZjYJRdWZGTkbKbmbjI6PlKwPBqyPKIh6yY1/ZHQYR9eqSBz/RBO4E2L3txbp1KRoZOwvGp3fYHIHZsAAAMAUlEQVR4nO2deXeqPhPHxURFKFqK4tZau2i9rVq7r+//dT1QbdkmyUzAc37nOfn+d88VCJ9OkslkMtRqRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZG/8canh53b5+ebm+7x6fDwz2m3RiPx41273BPOLBOnx7qrmvbnZ1s23XrD0/3FT9lvJwdjTz2q/fBej6u+BGH1tXT1o0o1fOKmLnbp6uKntKbDzjjgWMl8vsjzthd2BBe1Hg+Ums1eFmHZ+KbJGpBt/vE/72GT3W3yClFzK3fVNAlmwPG+xaoPmeLTRu+rOE5CPWDEY/+EKtNS9UKBlzNVFf96v5LSuqX1/aYAqao6YIJSO1NbOLdNaELG0x2WU7OiE1mUjNpcuAyjoPVrbtKUjvZ9a4Go98mLrivfNM+ez4rXkqCFStgz1NJS7RhHUcI8LLrutZ14alRxfLZZcEsyLCi2/AFQL0crOEWa1W/crc6Y30rGKHf0/Fm5WHF1AcCt0QT1g0V1Q+uVzKrEGlWe02srHFpwYo64wQGoAVrWFcP65A6daJxzagv63thBbCi2yyrgvWtY1Z743qisHqBGqcQe6kAlmV5m2pgPeizigb6azyrRw1WUeMvqoBlZU1UE1Zvq9cFf9WpnyNZhZpv6iWzWQlYllf03KiwzjWHqzQunEc/9vRe0nlO7lEGlsULcyIR1rA0qkguapi3SPNgIpayiFKw+nflYFXCCkdrrTVgRa+4St2kFCyL5b1TEqxzis8upaXsiW3NTmh5aU+rHCx/UQZWRagidVSj/Eug94LBR/ou5WAVTIsCq+Q8mJWclb5hZYI1JWHlRy0CrNcqWSn8rY14Rdgf8ViTPjQBjGaZ24CwOMuJC63Yy06IeFjdMr5oUe6tDJYvmAp9zu4287Pm2XxzcQLEA1n27SBYvNHOajydTQSzCZ/rwRpWy0o+JY4F3Ycv0q1vzwdeNtQ1yS1SIFgMiqqGDPzrBC+ZX6FhbStmVZcNW3Av9FlhedsLrTQunvtvNKxaG7Rl39KCdVuV15CocyOEtXKAVkUdCPrt/OTvFXh+PYeHVWuDPTE7aCFhnVfdCWOJvS244aL4eLgfoXN2QIMV3QV4Jss8EwnrocqZ8E9bwdu3oSFr9ChCW+sNfi7IDcdEWLUJRCLjaeFgXR3CsCLTEuzCtsA/smwLeh4N0AWHmwhrBngQPLN9gYN1gNF9J7jZU6BRzqWEVYTF6heWckRYc+CpWWNFwTo9jGFFpgVv+UDNDmZSWLXe+yeAkAILsmcNWF8HYiUatZYQLPGQtacFjP8kWKAHS+6GlfujidxTqNmQZTkr6JcKlYeVCZdiYFW6KMyq8wA1+4w8wFcBaww8lWVcOwys6v3RRC6EAJwNc0uP6mFB04qX+QUC1vEhYXW+gWaDfpZVXOxUC2tdXGP571RY14frhXXBEA8HaOCdz8pgnRRXh7kpGAGLMLx3XLe+jVMA8XxdKGY6gDOM2AXw26pgQb0wOxkiYN1je2HH/eruVnvD7jUib2snG0pGAtdpkUaBJCGoHKxeAIQdGDX4h50L3ev0uvgcu28NzofCqLLPPoUJQaVgtRdAoKP/kf2RGhbSQjr5dd4Vcju2A7UdjtHEcqTpZpqweiGHHpjPgFTCwgZngKEHt8EBBmrOJDsNPrdCpM8lh9Wb/mi5XjEo4mA5+QWUEhZyyALbilp/2+D6cCHbj/Y5kyd/4mC1//1sffCRwIy9fDxBCesWYx6iMB7mWhsMmDYVm1gB+yxEr8iw5M8IPvK3U8LCjO/gjBbrHtGHO/Cm2EC1y+pwvha5TFXA8jUSQ1BdSdhaVLwCvLI3UieGjLyBPO2uDCydlCPEy8Kjzo8wkTAXvhSVctRnlzJXogQsaLmghIXpSJLmIliDPnykOWoL32FvYlz6sLTSJBGeAxxm2etGPeQJN3lCXMJD5KiKpkZtWBOtBFxE4K8jOz2BCFnAAcBYS2R6iONdwI6XLix/AY6FKliIfR1bdlIOc70QVnyyCIcrKG6DlYElODhQASxpHh+iG0tgRUs2bAIgKyQ1loEFHxz4j8Oq1R6xZywCv7i7X8rP8grGWkU3lL0sYsyTw6q13pHG5Rc3Dkt58FaBVgUDvNB/j4VYWooH+L1Chjzs5OXjEeVgpTPqUbAwroPs/NITwnVQ5i73Hj1cimn+7UrCyodzqnBKZfmhiNWSyClNqz3zUNblqU+FUWClDyBgYCHW0ZJ+hNmfFSx38rgeGeJAqx9kZvyysHIZX1UspAVxg1iomDQKVhzO7IPxzIyCjAeBi2dxPhHeNxOFV8LCZGYJTQu18f+FhBVpeslUgxdLD/KKsHJrp+Z0I4iVWtZoTYGFGKHFxoGJ70jnh4LGF57gtfbKpP/hNyx6G0EphHSaqhIWaj9a0BFR+YLSpSWg9mYiHbx4ag1M2TfsrUB/Ln07JSxcCg0YeXhFhe9xZ8QyWr5LcPknerBqtQuIhXNEgIXcCutsCw7ANW6rAzcZ5jR9E+NKbWDRYNVWUE9MJSyrYSFzbzt2NsWjC1SnAUUY3zO4LNEqKJX2RoTVA2EkM4YaVhe7fW/Xk0nxCl0hoyM9liLTWrDE9n1dWLUNMHmk5kM1LHwKfGqReIy+SH30UKiGJcgf+cNBhdUDoo2plENEFg06VTk1rxFyurRZRboEva6k41Bh1S6hjAcKrG9sQowOLJtU6KEgKJ0jddyJDOsRoM8osND9UAdWiV4YC1zeJSloZFjQCavkAkxOKTb1TweW6EQKVpAp9AfasIBUSSIszCa8JizJ/mysmRIW1P5kSKZ3QwjWX7gadWgAaSU6liUlsfTeVLCgfpg43WRYH8D8SrMsrKtFhyV3shqe1T9R5H6AsPQtC0jCpcLCLnnosKQg4hwth4PF/P4Epczrj1ngfEGaDWtYH5MMy4aS4P8027nTnvTQTgj43MnxAios6G6pmA/ycCbKMaVblgzD2a83zReSLL83oN+MtP0sB7ibk8RekbBQh+iosERnM3+UWtT63osohxRKXtf34NdQXJG0NtwJE0wnwpKE7iMdpeelgG1AXPAp8GSup8E6A/NQSFGHvaqHZcu2wDa5dk3YY3F3fgxWDUlFgmknWeGcnVTBFjQshGdKgyU4xbrHUGz4yLtcZt6zLUiDSKX6U0oVfMAbY+n8bnx5FXVHJMGyZSlwcKUxh7P3WdiMy6M0muGdaNs1lX0EwgI6dHv64QkKEqd3DgmFe5QzIs2yZKw+RNvPfsB3dXf4RFhtOUUDguWf5GUxYZXrbBkMAqxzlWlRYNmyaMOyTCWnQFVN0i9Idrf0kVBK/SxV+hEBljRzBrGtLlG6yEfJ+lmRvPS0QqrMphjk8bCkg3vtDZkbCcqpruafla/HRSuQKF/2oGG58mWOZmnEnSqs+Wfly28SS29KK45hYcnrjNU2Zd5wlDl2XhZWLt+LWtRVZltIWK5qv/5R/xX9fuZOJWHx3BqeXC5YskrEwZKuCHda69ePzra8HKxRvu4GvRC1uL45BhauyvmSVgb+TyxXbawUrFGhVJBOifNrgXEhYNnIzfrWRKdOab7blILFi/VctIrnCwrCq2Hhy8H3VvT3ZLP8XUrAKt5M97MMwy0EQwXLJn1oYKlM8svJWxfuoQ2rz6BT67of/PgG6lzIYXUUHkNBvYFH8E6d4oEIbVg+uwPDZ9qfkum9FupcyGB13Ads0fxErU/sQSeLL6BSk1qwHPYs2CQp8ZGi4UMOlxhWhEpvm/7sU/4tp70CBp2l1IHlj7yjyr+786PzV9tGwLLdV/2Mhla+ym1RI+9F9K0wGixnwqy15AtrpWBF6m4T8wJhddxtiU9fxeqFb5J4U192CB8Ly3eCSfxptVBeLaIsrKg33m7dnYEVYNm2u72t4rOQjfCOcZ4vreP3J4xfyA6Uj//lK3SDct5WL5up+qN9Teh2/+S7wEXd32xt104t+o6jf9lfN1V+DbIVvjzHIdJfMe/kI6T8Vf9LGt5/p3JKu4f50Gh73JwuI83PWpivNxoZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRlB+h8sv/3C1STzdgAAAABJRU5ErkJggg==",
+        PNB: "data:image/png;base64,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"
+      };
+
+      if (bankName) {
+        bankLogoBox.style.display = 'flex';
+        bankLogo.src = bankLogos[bankName] || "";
+      } else {
+        bankLogoBox.style.display = 'none';
+        bankLogo.src = "";
+      }
+    }
+
+    function goToConfirmationPage(event) {
+      event.preventDefault();
+
+      const paymentData = {
+        cardType: document.getElementById('card-type').value,
+        cardNumber: document.getElementById('card-number').value,
+        expiryDate: document.getElementById('expiry-date').value,
+        cvv: document.getElementById('cvv').value,
+        cardholderName: document.getElementById('cardholder-name').value,
+        bankName: document.getElementById('bank-name').value
+      };
+
+      localStorage.setItem('paymentData', JSON.stringify(paymentData));
+      window.location.href = 'confirmation.html';
+    }
+  </script>
+</body>
+</html>
